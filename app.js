@@ -46,7 +46,7 @@ Runner.run(runner, engine)
 
 world.gravity.y = 0
 
-let towerHeight = 50,
+let towerHeight = 0,
     clientsCount = 0
 
 // add bodies
@@ -99,7 +99,7 @@ const addChain = (countChain) => {
 
 function setContext (cc) {
     const Text = new text()
-    if(cc == Number) {
+    if(!isNaN(cc)) {
         Text.setContect(Hair.bodies[Hair.bodies.length - 1], Number(cc).toFixed(3))
     } else {
         Text.setContect(Hair.bodies[Hair.bodies.length - 1], cc)
@@ -114,18 +114,18 @@ function UpdateClick(cc) {
 }
 
 function incTowerHeight () {
-    UpdateClick(towerHeight + 5)
+    UpdateClick(towerHeight + 0.005)
     socket.emit('clickInc')
 }
 
 function decTowerHeight () {
     if(towerHeight <= 0) return
-    UpdateClick(towerHeight - 5)
+    UpdateClick(towerHeight - 0.005)
     socket.emit('clickDec')
 }
 
 function removeOneChain () {
-    if(towerHeight <= 50) return
+    if(towerHeight <= 20) return
     HairBody.removeChain(Hair)
     setContext(towerHeight)
 }
@@ -144,7 +144,7 @@ const addOneChain = () => {
 }
 setInterval(() => {
     let lastcountChain = Hair.bodies.length - 3
-    let countChain = towerHeight / 50 
+    let countChain = towerHeight / 20 
     countChain = Math.floor(countChain) - 1
     if(lastcountChain < countChain) {
         addOneChain()
@@ -170,7 +170,7 @@ function UpdateUsers(count) {
 
 socket.on('connection', (cc) => {
     UpdateClick(cc)
-    let countChain = cc / 50 
+    let countChain = cc / 20 
     countChain = Math.floor(countChain) - 1
     addChain(countChain)
     firststart()
@@ -186,8 +186,6 @@ function firststart() {
         translate.y = world.bounds.max.y - render.bounds.max.y;
         
     Bounds.translate(render.bounds, translate)
-
-    firstStart = false
 }
 
 socket.on('clickInc', UpdateClick)
