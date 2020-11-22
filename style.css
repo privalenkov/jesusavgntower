@@ -1,0 +1,280 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    padding: 0;
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+}
+header {
+    user-select: none;
+    position: absolute;
+    display: flex;
+    right: 0;
+    align-items: center;
+}
+.container {
+    overflow: hidden;
+}
+.btn {
+    transition: .2s;
+    width: 40px;
+    height: 40px;
+    background: #72B6DC;
+    border-radius: 50%;
+    margin: 20px 20px 20px 10px;
+}
+.btn:hover {
+    color: #ffffff;
+    background: #1F2E37;
+}
+
+header:hover {
+    cursor: pointer;
+}
+.btn::after {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+
+.btn-how::after {
+    content: '?';
+}
+
+.btn-dev::after {
+    font-weight: 700;
+    font-size: 12px;
+    content: 'Я';
+}
+
+.btn-hes::after {
+    font-weight: 700;
+    font-size: 12px;
+    content: 'Там';
+}
+
+.btn-text {
+    font-size: 16px;
+}
+
+.link-content {
+    display: flex; 
+    align-items: center; 
+    cursor: pointer;
+}
+
+.link-content:first-child {
+    margin: 0 20px 0 0 ;
+}
+
+/* .title {
+    animation-fill-mode: forwards;
+    animation-duration: 8s;
+    animation-name: titlesh2;
+    position: absolute;
+    top: 30%;
+} */
+/* .title-img {
+    position: relative;
+    top: -30%;
+    
+    
+    background-repeat: no-repeat;
+    background-image: url(img/title.svg);
+    background-position: center;
+    background-size: contain;
+    width: 40vw;
+    height: 40vh;
+} */
+
+footer {
+    user-select: none;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-between;
+}
+.howto-content {
+    display: none;
+    z-index: 1;
+    transition: .2s;
+    user-select: none;
+    
+    flex-wrap: wrap;
+    width: 500px;
+    align-self: flex-end;
+    margin: 0 160px 0 50px;
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+}
+.block-text {
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.block-img-one {
+    align-self: center;
+    width: 170px;
+    height: 170px;
+    margin: 0 0 0 50px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('img/howto1.svg');
+}
+.block-img-two {
+    align-self: center;
+    width: 170px;
+    height: 136px;
+    margin: 0 50px 0 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('img/howto2.svg');
+}
+.block-text h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+a {
+    color: #1F2E37;
+    text-decoration: none;
+}
+.block-text p {
+    
+    font-size: 18px;
+    font-weight: 400;
+}
+.showhowto {
+    display: flex;
+}
+.users-online-content {
+    margin: 0 0 0 20px
+}
+
+/* @keyframes titlesh2 {
+    0% {
+        opacity: 0; 
+    }
+  
+    10% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+        margin-left: 0;   
+    }
+    100% {
+        opacity: 0;
+        display: none;
+        margin-left: -100%;
+        right: -10;
+    }
+} */
+
+@media (max-width: 1220px) {
+    .title-img {
+        display: none;
+    }
+    .howto-container {
+        position: absolute; 
+        left: 50%;
+        top: 10%;
+    }
+    .howto-content {
+        position: relative;
+        left: -50%;
+        
+    }
+}
+
+
+@media (max-width: 1506px) {
+    
+    .container-howto {
+        background: #F4F3EE;
+    }
+    .howto-content {
+        margin: 0;
+    }
+    
+}
+
+.bg-howto {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: #F4F3EE;
+}
+
+.truefalsebg {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    
+    .btn-hes::after {
+        content: 'Хес';
+    }
+    .howto-content div{
+        width: 120px;
+        height: 120px;
+    }
+    .howto-content {
+        width: 290px;
+    }
+    .howto-content div{
+        width: 320px;
+        height: 129px;
+    }
+    .block-img-one {
+        margin: 0;
+    }
+    .block-img-two {
+        order: 1;
+        margin: 0;
+    }
+    .howto-content h3{
+        font-size: 18px;
+    }
+    .howto-content p{
+        font-size: 16px;
+    }
+
+    /* footer */
+    footer {
+        user-select: none;
+        align-items: flex-end;
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .users-online-content {
+        margin: 0 0 20px 20px;
+    }
+    .links-container {
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
+    .link-content {
+        margin: 0;
+    }
+    .btn-text {
+        display: none;
+    }
+}
+  
