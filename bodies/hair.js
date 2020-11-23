@@ -34,13 +34,6 @@ class hair {
             angleBMin: Math.PI / 2,
             angleBMax: Math.PI / 2,
             angleBStiffness: 0.01
-            /////
-            // angleAMin:  0.2 + Math.PI / 2,
-            // angleAMax: -0.2 + Math.PI / 2,
-            // angleAStiffness: 0.01,
-            // angleBMin:  0.2 + Math.PI / 2,
-            // angleBMax: -0.2 + Math.PI / 2,
-            // angleBStiffness: 0.01
         }));
     }
     addChain(stack) {
@@ -79,20 +72,6 @@ class hair {
             angleBMin: Math.PI / 2,
             angleBMax: Math.PI / 2,
             angleBStiffness: 0.01
-            ////
-            // angleAStiffness: 0.01,
-            // angleAMin: 1.2,
-            // angleAMax: 2,
-            // angleBStiffness: 0.01,
-            // angleBMin: 1.2,
-            // angleBMax: 2
-            ////
-            // angleAMin:  0.2 + Math.PI / 2,
-            // angleAMax: -0.2 + Math.PI / 2,
-            // angleAStiffness: 0.01,
-            // angleBMin:  0.2 + Math.PI / 2,
-            // angleBMax: -0.2 + Math.PI / 2,
-            // angleBStiffness: 0.01
         }))
     }
     removeChain(stack) {
