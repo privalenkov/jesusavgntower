@@ -67,9 +67,9 @@ header:hover {
     cursor: pointer;
 }
 
-.link-content:first-child {
+/* .link-content:first-child {
     margin: 0 20px 0 0 ;
-}
+} */
 
 /* .title {
     animation-fill-mode: forwards;
@@ -91,7 +91,7 @@ header:hover {
     height: 40vh;
 } */
 
-footer {
+/* footer {
     user-select: none;
     align-items: center;
     display: flex;
@@ -99,6 +99,19 @@ footer {
     bottom: 0;
     width: 100%;
     justify-content: space-between;
+} */
+
+.users-online-content {
+    margin: 0 0 20px 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.links-container {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 .howto-content {
     display: none;
@@ -157,9 +170,6 @@ a {
 }
 .showhowto {
     display: flex;
-}
-.users-online-content {
-    margin: 0 0 0 20px
 }
 
 /* @keyframes titlesh2 {
@@ -253,7 +263,7 @@ a {
     }
 
     /* footer */
-    footer {
+    /* footer {
         user-select: none;
         align-items: flex-end;
         display: flex;
@@ -261,7 +271,7 @@ a {
         bottom: 0;
         width: 100%;
         justify-content: space-between;
-    }
+    } */
     .users-online-content {
         margin: 0 0 20px 20px;
     }
