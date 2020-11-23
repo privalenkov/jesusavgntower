@@ -1,6 +1,11 @@
 const howtobtn = document.querySelector('#btn-howto')
 const howtoblock = document.querySelector('.howto-content')
 const bghowto = document.querySelector('.bg-howto')
+
+setTimeout(() => {
+    howtoblock.classList.toggle('showhowto')
+}, 8000);
+
 howtobtn.addEventListener('click', () => {
     howtoblock.classList.toggle('showhowto')
     if(document.documentElement.clientWidth <= 1220) {

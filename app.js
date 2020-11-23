@@ -115,13 +115,13 @@ function UpdateClick(cc) {
 }
 
 function incTowerHeight () {
-    UpdateClick(towerHeight + 0.005)
+    UpdateClick(towerHeight + 0.001)
     socket.emit('clickInc')
 }
 
 function decTowerHeight () {
     if(towerHeight <= 0) return
-    UpdateClick(towerHeight - 0.005)
+    UpdateClick(towerHeight - 0.001)
     socket.emit('clickDec')
 }
 
