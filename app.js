@@ -355,9 +355,6 @@ function createGlad() {
     })
     Body.applyForce(bodyGlad, {x: bodyGlad.position.x, y: bodyGlad.position.y}, {x:-.02,y: 0 })
     Composite.add(compositeglads, bodyGlad)
-    const audio = new Audio()
-    audio.src = 'sounds/ban_chuchel.mp3'
-    audio.play()
 }
 let interval = setInterval(() => {
     createGlad()
