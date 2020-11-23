@@ -8,6 +8,7 @@ class head {
         return Body.create({ 
             collisionFilter: { group: group },
             position: this.position,
+            label: 'head',
             render: {
                 zIndex: 1,
                 sprite: {

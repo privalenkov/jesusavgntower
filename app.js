@@ -51,6 +51,7 @@ let towerHeight = 0,
 
 // add bodies
 const group = Body.nextGroup(true)
+const group2 = Body.nextGroup(true)
 
 //create head
 const Head = new head({
@@ -220,40 +221,47 @@ Events.on(mouseConstraint, "enddrag", (e) => {
     let bodies = Composite.allBodies(engine.world)
     let point = Query.point(bodies, e.mouse.position)
 
-    if(point.length == 0) {
+    if(e.body.label != 'glad') {
+        if(point.length == 0) {
 
-        btnclick = true
-        setTimeout(() => {
-            btnclick = false
-        }, 500);
-
-        const audio = new Audio()
-        audio.src = 'sounds/tap.mp3'
-        audio.play()
-
-        decTowerHeight()
+            btnclick = true
+            setTimeout(() => {
+                btnclick = false
+            }, 500);
+    
+            const audio = new Audio()
+            audio.src = 'sounds/tap.mp3'
+            audio.play()
+    
+            decTowerHeight()
+        }
     }
 })
 
 document.addEventListener('click', () => {
     let bodies = Composite.allBodies(engine.world)
     let point = Query.point(bodies, mouseConstraint.mouse.position)
-
-    if(point.length != 0) {
-        let compound = Hair.bodies[Hair.bodies.length - 3]
-        btnclick = true
-        setTimeout(() => {
-            btnclick = false
-        }, 500);
-
-        const audio = new Audio()
-        audio.src = 'sounds/tap.mp3'
-        audio.play()
-
-        let rand = getRandomFloat(-.1, .1)
-        Body.setAngularVelocity(compound, rand);
-        incTowerHeight()
-    }
+    let bool = true
+    // if(point.length != 0) {
+    // }
+    point.forEach(function(body){
+        if(body.label != 'glad' && bool) {
+            let compound = Hair.bodies[Hair.bodies.length - 3]
+            btnclick = true
+            setTimeout(() => {
+                btnclick = false
+            }, 500);
+    
+            const audio = new Audio()
+            audio.src = 'sounds/tap.mp3'
+            audio.play()
+    
+            let rand = getRandomFloat(-.1, .1)
+            Body.setAngularVelocity(compound, rand);
+            incTowerHeight()
+            bool = false
+        }
+    });
 })
 
 // add mouse
@@ -286,12 +294,93 @@ let boundsScaleTarget = 1,
     },
     animid = 0
 
+
+// const bodyglad = Body.create({ 
+//     position: {x: 820, y: 350},
+//     label: 'glad',
+//     render: {
+//         sprite: {
+//             texture: 'img/glad.png',
+//             xScale: .6,
+//             yScale: .6
+//         }
+//     },
+//     friction: 0,
+//     frictionAir: 0
+// })
+let compositeglads = Composites.stack(820, 350, 1, 1, 150, 150, function() {})
+
+// console.log(compositeglads)
+// let gladbodies = compositeglads.bodies
+
+
+
+World.add(world, [compositeglads])
+
+Events.on(engine, 'collisionEnd', function(event){
+    let collidebool = true
+    let pairs = event.pairs;
+    // console.log(pairs)
+    pairs.forEach(function(pair){
+        if(pair.bodyB.label === 'glad' && pair.bodyA.label !== 'glad'){
+        if(collidebool) {
+            decTowerHeight()
+            collidebool = false
+        }
+        // World.remove(engine.world, [pair.bodyA]);
+        Composite.remove(compositeglads, [pair.bodyB])
+        }
+    });
+});
+
+function isOffScreen(body) {
+    let pos = body.position
+    return (pos.y < render.bounds.min.y - 100 || pos.y > render.bounds.max.y + 100 || pos.x < render.bounds.min.x - 100 || pos.x > render.bounds.max.x + 100)
+}
+
+function createGlad() {
+    const pos = getRandomInt(100, 500)
+    const bodyGlad = Bodies.circle(render.bounds.max.x - 100, render.bounds.max.y - pos, 20, { 
+        label: 'glad',
+        collisionFilter: { group: group2 },
+        render: {
+            sprite: {
+                texture: 'img/glad.png',
+                xScale: .7,
+                yScale: .7
+            }
+        },
+        friction: 0,
+        frictionAir: 0
+    })
+    Body.applyForce(bodyGlad, {x: bodyGlad.position.x, y: bodyGlad.position.y}, {x:-.02,y: 0 })
+    Composite.add(compositeglads, bodyGlad)
+    const audio = new Audio()
+    audio.src = 'sounds/ban_chuchel.mp3'
+    audio.play()
+}
+let interval = setInterval(() => {
+    createGlad()
+}, 5000);
+document.addEventListener( 'visibilitychange' , function() {
+    if (document.hidden) {
+        clearInterval(interval);
+        
+    } else {
+        interval = setInterval(() => {
+            createGlad()
+        }, 5000);
+        
+    }
+}, true );
+
+
 // use the engine tick event to control our view
 Events.on(engine, 'beforeTick', function() {
     var world = engine.world,
         mouse = mouseConstraint.mouse,
         translate;
-
+    
     // mouse wheel controls zoom
     var scaleFactor = mouse.wheelDelta * -0.1;
     if (scaleFactor !== 0) {
@@ -299,7 +388,7 @@ Events.on(engine, 'beforeTick', function() {
             boundsScaleTarget += scaleFactor;
         }
     }
-
+    
     // if scale has changed
     if (Math.abs(boundsScale.x - boundsScaleTarget) > 0.01) {
         scaleFactor = (boundsScaleTarget - boundsScale.y) * 0.2;
@@ -335,7 +424,12 @@ Events.on(engine, 'beforeTick', function() {
         Head.render.sprite.texture = 'img/headA.png'
     }
 
-
+    compositeglads.bodies.forEach(body => {
+        if(isOffScreen(body)) {
+            Composite.remove(compositeglads, [body])
+        }
+    });
+    
     if(towerHeight <= 0) {
         setContext('У вас 0')
     }
@@ -343,4 +437,8 @@ Events.on(engine, 'beforeTick', function() {
 
 function getRandomFloat(min, max) {
     return Math.random() * (max - min) + min;
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

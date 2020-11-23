@@ -10,7 +10,7 @@ class text {
         const lastcos = Math.cos(stack.bodies[stack.bodies.length - 1].angle)
         const lastsin = Math.sin(stack.bodies[stack.bodies.length - 1].angle)
         const body = Bodies.rectangle(stack.bodies[stack.bodies.length - 1].position.x + (lastcos * 40), stack.bodies[stack.bodies.length - 1].position.y - (lastsin * -40), 35, 35, { 
-            collisionFilter: { group: group },
+            collisionFilter: { group: group, group: group2 },
             render: {
                 fillStyle: "#F4F3EE",
                 text:{
