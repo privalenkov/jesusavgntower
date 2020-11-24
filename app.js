@@ -110,7 +110,6 @@ function setContext (cc) {
 
 
 function UpdateClick(cc) {
-    console.log(cc)
     if(cc < 0) { 
         towerHeight = 0
         return
@@ -123,7 +122,7 @@ const textincdec = Composites.stack(0, 0, 1, 1, 10, 10, () => {})
 World.add(world, textincdec)
 
 function incTowerHeight () {
-    const body = Bodies.rectangle(350, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
+    const body = Bodies.rectangle(Hair.bodies[Hair.bodies.length - 1].position.x, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
         collisionFilter: { group: group, group: group2 },
         label: 'pointinc',
         render: {
@@ -146,7 +145,7 @@ function incTowerHeight () {
 }
 
 function decTowerHeight () {
-    const body = Bodies.rectangle(350, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
+    const body = Bodies.rectangle(Hair.bodies[Hair.bodies.length - 1].position.x, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
         collisionFilter: { group: group, group: group2 },
         label: 'pointinc',
         render: {
