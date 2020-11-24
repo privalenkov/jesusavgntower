@@ -127,6 +127,20 @@ header:hover {
     right: 0;
     bottom: 25%;
 }
+.howto-content2 {
+    display: none;
+    z-index: 1;
+    transition: .2s;
+    user-select: none;
+    
+    flex-wrap: wrap;
+    width: 600px;
+    align-self: flex-end;
+    margin: 0 50px 0 160px;
+    position: absolute;
+    left: 0;
+    bottom: 25%;
+}
 .block-text {
     width: 240px;
     height: 240px;
@@ -134,26 +148,43 @@ header:hover {
     justify-content: center;
     flex-direction: column;
 }
-.block-img-one {
+.howto-content .block-img-one, .howto-content .block-img-two {
     align-self: center;
-    width: 170px;
-    height: 170px;
     margin: 0 0 0 50px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.howto-content .block-img-one {
+    width: 170px;
+    height: 170px;
     background-image: url('img/howto1.svg');
 }
-.block-img-two {
-    align-self: center;
+.howto-content .block-img-two {
     width: 170px;
     height: 136px;
-    margin: 0 50px 0 0;
+    background-image: url('img/howto2.svg');
+}
+.howto-content2 .block-img-one, .howto-content2 .block-img-two {
+    align-self: center;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('img/howto2.svg');
 }
+.howto-content2 .block-img-one {
+    width: 170px;
+    height: 170px;
+    margin: 0 0 0 50px;
+    background-image: url('img/howto1_1.svg');
+}
+.howto-content2 .block-img-two {
+    width: 170px;
+    height: 170px;
+    margin: 0 50px 0 50px;
+    background-image: url('img/howto2_2.svg');
+}
+
 .block-text h3 {
     margin: 0;
     font-size: 24px;
@@ -201,7 +232,7 @@ a {
         left: 50%;
         top: 10%;
     }
-    .howto-content {
+    .howto-content, .howto-content2 {
         position: relative;
         left: -50%;
         
@@ -214,9 +245,10 @@ a {
     .container-howto {
         background: #F4F3EE;
     }
-    .howto-content {
+    .howto-content, .howto-content2 {
         margin: 0;
     }
+    
     
 }
 
@@ -259,6 +291,25 @@ a {
         font-size: 18px;
     }
     .howto-content p{
+        font-size: 16px;
+    }
+
+    /* howtocontent2 */
+    .howto-content2 div {
+        width: 120px;
+        height: 120px;
+    }
+    .howto-content2 {
+        width: 290px;
+    }
+    .howto-content2 div {
+        width: 320px;
+        height: 129px;
+    }
+    .howto-content2 h3 {
+        font-size: 18px;
+    }
+    .howto-content2 p {
         font-size: 16px;
     }
 

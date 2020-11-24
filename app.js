@@ -110,18 +110,64 @@ function setContext (cc) {
 
 
 function UpdateClick(cc) {
+    console.log(cc)
+    if(cc < 0) { 
+        towerHeight = 0
+        return
+    }
     towerHeight = cc
     setContext(towerHeight)
 }
 
+const textincdec = Composites.stack(0, 0, 1, 1, 10, 10, () => {}) 
+World.add(world, textincdec)
+
 function incTowerHeight () {
+    const body = Bodies.rectangle(350, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
+        collisionFilter: { group: group, group: group2 },
+        label: 'pointinc',
+        render: {
+            fillStyle: "#F4F3EE",
+            text:{
+                content: "+1",
+                color: "#96CE73",
+                size: 24,
+                family: "Comfortaa",
+            },
+        },
+        frictionAir: 0.3
+    });
+    Body.applyForce(body, {x: body.position.x, y: body.position.y}, {x: 0, y: -.05})
+    Composite.add(textincdec, body) 
+
+
     UpdateClick(towerHeight + 0.001)
     socket.emit('clickInc')
 }
 
 function decTowerHeight () {
+    const body = Bodies.rectangle(350, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
+        collisionFilter: { group: group, group: group2 },
+        label: 'pointinc',
+        render: {
+            fillStyle: "#F4F3EE",
+            text:{
+                content: "-3",
+                color: "#CE7373",
+                size: 24,
+                family: "Comfortaa",
+            },
+        },
+        frictionAir: 0.3
+    });
+    Body.applyForce(body, {x: body.position.x, y: body.position.y}, {x: 0, y: -.05})
+    Composite.add(textincdec, body) 
+
+
+
     if(towerHeight <= 0) return
-    UpdateClick(towerHeight - 0.001)
+    UpdateClick(towerHeight - 0.003)
+    if(towerHeight < 0) towerHeight = 0
     socket.emit('clickDec')
 }
 
@@ -131,19 +177,28 @@ function removeOneChain () {
     setContext(towerHeight)
 }
 
+
+
 const addOneChain = () => {
     const RectHair = new recthair()
     const Text = new text()
-
+    
     Text.remove(Hair)
     RectHair.remove(Hair)
-
+    
     HairBody.addChain(Hair)
     RectHair.create(Hair)
     Text.create(Hair)
     setContext(towerHeight)
 }
 setInterval(() => {
+    if(textincdec.bodies.length) {
+            Composite.remove(textincdec, textincdec.bodies[0])
+        // setTimeout(() => {
+        // }, 2000);
+    }
+
+
     let lastcountChain = Hair.bodies.length - 3
     let countChain = towerHeight / 20 
     countChain = Math.floor(countChain) - 1
@@ -191,6 +246,7 @@ function firststart() {
 
 socket.on('clickInc', UpdateClick)
 socket.on('clickDec', UpdateClick)
+socket.on('autoDec', UpdateClick)
 socket.on('updateUserCount', UpdateUsers)
 
 
@@ -221,7 +277,7 @@ Events.on(mouseConstraint, "enddrag", (e) => {
     let bodies = Composite.allBodies(engine.world)
     let point = Query.point(bodies, e.mouse.position)
 
-    if(e.body.label != 'glad') {
+    if(e.body.label != 'glad' && e.body.label != 'pointinc') {
         if(point.length == 0) {
 
             btnclick = true
@@ -245,7 +301,7 @@ document.addEventListener('click', () => {
     // if(point.length != 0) {
     // }
     point.forEach(function(body){
-        if(body.label != 'glad' && bool) {
+        if(body.label != 'glad' && body.label != 'pointinc' && bool ) {
             let compound = Hair.bodies[Hair.bodies.length - 3]
             btnclick = true
             setTimeout(() => {
