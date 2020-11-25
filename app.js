@@ -122,6 +122,7 @@ const textincdec = Composites.stack(0, 0, 1, 1, 10, 10, () => {})
 World.add(world, textincdec)
 
 function incTowerHeight () {
+    
     const body = Bodies.rectangle(Hair.bodies[Hair.bodies.length - 1].position.x, Hair.bodies[Hair.bodies.length - 1].position.y, 35, 35, { 
         collisionFilter: { group: group, group: group2 },
         label: 'pointinc',
@@ -137,6 +138,9 @@ function incTowerHeight () {
         frictionAir: 0.3
     });
     Body.applyForce(body, {x: body.position.x, y: body.position.y}, {x: 0, y: -.05})
+    if(textincdec.bodies.length) {
+        Composite.clear(textincdec)
+    }
     Composite.add(textincdec, body) 
 
 
@@ -160,6 +164,9 @@ function decTowerHeight () {
         frictionAir: 0.3
     });
     Body.applyForce(body, {x: body.position.x, y: body.position.y}, {x: 0, y: -.05})
+    if(textincdec.bodies.length) {
+        Composite.clear(textincdec)
+    }
     Composite.add(textincdec, body) 
 
 
