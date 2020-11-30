@@ -114,6 +114,7 @@ header:hover {
     bottom: 0;
 }
 .howto-content {
+    pointer-events: none;
     display: none;
     z-index: 1;
     transition: .2s;
@@ -128,6 +129,7 @@ header:hover {
     bottom: 25%;
 }
 .howto-content2 {
+    pointer-events: none;
     display: none;
     z-index: 1;
     transition: .2s;
