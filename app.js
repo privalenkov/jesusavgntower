@@ -421,17 +421,17 @@ function createGlad() {
 // let interval = setInterval(() => {
 //     createGlad()
 // }, 5000);
-document.addEventListener( 'visibilitychange' , function() {
-    if (document.hidden) {
-        clearInterval(interval);
+// document.addEventListener( 'visibilitychange' , function() {
+//     if (document.hidden) {
+//         clearInterval(interval);
         
-    } else {
-        interval = setInterval(() => {
-            createGlad()
-        }, 5000);
+//     } else {
+//         interval = setInterval(() => {
+//             createGlad()
+//         }, 5000);
         
-    }
-}, true );
+//     }
+// }, true );
 
 
 // use the engine tick event to control our view
