@@ -418,9 +418,9 @@ function createGlad() {
     Body.applyForce(bodyGlad, {x: bodyGlad.position.x, y: bodyGlad.position.y}, {x:-.02,y: 0 })
     Composite.add(compositeglads, bodyGlad)
 }
-let interval = setInterval(() => {
-    createGlad()
-}, 5000);
+// let interval = setInterval(() => {
+//     createGlad()
+// }, 5000);
 document.addEventListener( 'visibilitychange' , function() {
     if (document.hidden) {
         clearInterval(interval);
