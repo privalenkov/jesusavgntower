@@ -356,84 +356,6 @@ let boundsScaleTarget = 1,
     },
     animid = 0
 
-
-// const bodyglad = Body.create({ 
-//     position: {x: 820, y: 350},
-//     label: 'glad',
-//     render: {
-//         sprite: {
-//             texture: 'img/glad.png',
-//             xScale: .6,
-//             yScale: .6
-//         }
-//     },
-//     friction: 0,
-//     frictionAir: 0
-// })
-let compositeglads = Composites.stack(820, 350, 1, 1, 150, 150, function() {})
-
-// console.log(compositeglads)
-// let gladbodies = compositeglads.bodies
-
-
-
-World.add(world, [compositeglads])
-
-Events.on(engine, 'collisionEnd', function(event){
-    let collidebool = true
-    let pairs = event.pairs;
-    // console.log(pairs)
-    pairs.forEach(function(pair){
-        if(pair.bodyB.label === 'glad' && pair.bodyA.label !== 'glad'){
-        if(collidebool) {
-            decTowerHeight()
-            collidebool = false
-        }
-        // World.remove(engine.world, [pair.bodyA]);
-        Composite.remove(compositeglads, [pair.bodyB])
-        }
-    });
-});
-
-function isOffScreen(body) {
-    let pos = body.position
-    return (pos.y < render.bounds.min.y - 100 || pos.y > render.bounds.max.y + 100 || pos.x < render.bounds.min.x - 100 || pos.x > render.bounds.max.x + 100)
-}
-
-function createGlad() {
-    const pos = getRandomInt(100, 500)
-    const bodyGlad = Bodies.circle(render.bounds.max.x - 100, render.bounds.max.y - pos, 20, { 
-        label: 'glad',
-        collisionFilter: { group: group2 },
-        render: {
-            sprite: {
-                texture: 'img/glad.png',
-                xScale: .7,
-                yScale: .7
-            }
-        },
-        friction: 0,
-        frictionAir: 0
-    })
-    Body.applyForce(bodyGlad, {x: bodyGlad.position.x, y: bodyGlad.position.y}, {x:-.02,y: 0 })
-    Composite.add(compositeglads, bodyGlad)
-}
-// let interval = setInterval(() => {
-//     createGlad()
-// }, 5000);
-// document.addEventListener( 'visibilitychange' , function() {
-//     if (document.hidden) {
-//         clearInterval(interval);
-        
-//     } else {
-//         interval = setInterval(() => {
-//             createGlad()
-//         }, 5000);
-        
-//     }
-// }, true );
-
-
 // use the engine tick event to control our view
 Events.on(engine, 'beforeTick', function() {
     var world = engine.world,
@@ -482,12 +404,6 @@ Events.on(engine, 'beforeTick', function() {
     } else if(animid == 2 && btnclick == true) {
         Head.render.sprite.texture = 'img/headA.png'
     }
-
-    compositeglads.bodies.forEach(body => {
-        if(isOffScreen(body)) {
-            Composite.remove(compositeglads, [body])
-        }
-    });
     
     if(towerHeight <= 0) {
         setContext('У вас 0')

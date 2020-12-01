@@ -67,40 +67,6 @@ header:hover {
     cursor: pointer;
 }
 
-/* .link-content:first-child {
-    margin: 0 20px 0 0 ;
-} */
-
-/* .title {
-    animation-fill-mode: forwards;
-    animation-duration: 8s;
-    animation-name: titlesh2;
-    position: absolute;
-    top: 30%;
-} */
-/* .title-img {
-    position: relative;
-    top: -30%;
-    
-    
-    background-repeat: no-repeat;
-    background-image: url(img/title.svg);
-    background-position: center;
-    background-size: contain;
-    width: 40vw;
-    height: 40vh;
-} */
-
-/* footer {
-    user-select: none;
-    align-items: center;
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    justify-content: space-between;
-} */
-
 .users-online-content {
     margin: 0 0 20px 20px;
     position: absolute;
@@ -108,40 +74,14 @@ header:hover {
     bottom: 0;
 }
 .links-container {
+    z-index: 2;
     display: flex;
     position: absolute;
     right: 0;
     bottom: 0;
 }
-.howto-content {
+.howto-container {
     pointer-events: none;
-    display: none;
-    z-index: 1;
-    transition: .2s;
-    user-select: none;
-    
-    flex-wrap: wrap;
-    width: 500px;
-    align-self: flex-end;
-    margin: 0 160px 0 50px;
-    position: absolute;
-    right: 0;
-    bottom: 25%;
-}
-.howto-content2 {
-    pointer-events: none;
-    display: none;
-    z-index: 1;
-    transition: .2s;
-    user-select: none;
-    
-    flex-wrap: wrap;
-    width: 600px;
-    align-self: flex-end;
-    margin: 0 50px 0 160px;
-    position: absolute;
-    left: 0;
-    bottom: 25%;
 }
 .block-text {
     width: 240px;
@@ -150,42 +90,7 @@ header:hover {
     justify-content: center;
     flex-direction: column;
 }
-.howto-content .block-img-one, .howto-content .block-img-two {
-    align-self: center;
-    margin: 0 0 0 50px;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
-.howto-content .block-img-one {
-    width: 170px;
-    height: 170px;
-    background-image: url('img/howto1.svg');
-}
-.howto-content .block-img-two {
-    width: 170px;
-    height: 136px;
-    background-image: url('img/howto2.svg');
-}
-.howto-content2 .block-img-one, .howto-content2 .block-img-two {
-    align-self: center;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.howto-content2 .block-img-one {
-    width: 170px;
-    height: 170px;
-    margin: 0 0 0 50px;
-    background-image: url('img/howto1_1.svg');
-}
-.howto-content2 .block-img-two {
-    width: 170px;
-    height: 170px;
-    margin: 0 50px 0 50px;
-    background-image: url('img/howto2_2.svg');
-}
 
 .block-text h3 {
     margin: 0;
@@ -202,9 +107,11 @@ a {
     font-weight: 400;
 }
 .showhowto {
-    display: flex;
+    opacity: 1 !important;
 }
-
+.howto-container {
+    transition: .1s;
+}
 /* @keyframes titlesh2 {
     0% {
         opacity: 0; 
@@ -226,36 +133,28 @@ a {
 } */
 
 @media (max-width: 1220px) {
-    .title-img {
-        display: none;
+    .howto-content h3 {
+        font-size: 16px;
     }
-    .howto-container {
-        position: absolute; 
-        left: 50%;
-        top: 10%;
+    .howto-content p {
+        font-size: 16px;
     }
-    .howto-content, .howto-content2 {
-        position: relative;
-        left: -50%;
-        
+    .howto-content img {
+        width: 150px !important;
+        height: 150px !important;
+        align-self: center;
+    }
+    .block-text {
+        align-self: center;
+        height: 100px;
     }
 }
 
 
-@media (max-width: 1506px) {
-    
-    .container-howto {
-        background: #F4F3EE;
-    }
-    .howto-content, .howto-content2 {
-        margin: 0;
-    }
-    
-    
-}
 
 .bg-howto {
-    display: none;
+    transition: .1s;
+    opacity: 0;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -263,24 +162,20 @@ a {
 }
 
 .truefalsebg {
-    display: block;
+    opacity: 1;
 }
-
+@media (max-width: 838px) {
+    .howto-content img {
+        display: none;
+    }
+    .howto-content {
+        justify-content: center;
+    }
+}
 @media (max-width: 768px) {
     
     .btn-hes::after {
         content: 'Хес';
-    }
-    .howto-content div{
-        width: 120px;
-        height: 120px;
-    }
-    .howto-content {
-        width: 290px;
-    }
-    .howto-content div{
-        width: 320px;
-        height: 129px;
     }
     .block-img-one {
         margin: 0;
@@ -289,42 +184,30 @@ a {
         order: 1;
         margin: 0;
     }
-    .howto-content h3{
-        font-size: 18px;
-    }
-    .howto-content p{
-        font-size: 16px;
-    }
 
-    /* howtocontent2 */
-    .howto-content2 div {
-        width: 120px;
-        height: 120px;
+    .howto-content h3 {
+        font-size: 14px;
     }
-    .howto-content2 {
-        width: 290px;
+    .howto-content p {
+        font-size: 14px;
     }
-    .howto-content2 div {
-        width: 320px;
-        height: 129px;
+    .howto-content img {
+        display: none;
     }
-    .howto-content2 h3 {
-        font-size: 18px;
+    .howto-content .block-text {
+        height: 100px
     }
-    .howto-content2 p {
-        font-size: 16px;
+    .howto-container {
+        justify-content: center !important;
+        flex-direction: column;
     }
-
-    /* footer */
-    /* footer {
-        user-select: none;
-        align-items: flex-end;
-        display: flex;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        justify-content: space-between;
-    } */
+    .howto-content {
+        width: 200px !important;
+        height: 250px !important;
+    }
+    .howto-content {
+        margin: 0 !important;
+    }
     .users-online-content {
         margin: 0 0 20px 20px;
     }
@@ -340,4 +223,31 @@ a {
         display: none;
     }
 }
-  
+
+.howto-container {
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.howto-content:first-child {
+    margin: 0 0 0 50px;
+}
+.howto-content {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.howto-content img {
+    width: 200px;
+    height: 200px;
+}
+.bg-howto,  .howto-container {
+    pointer-events: none;
+}

@@ -1,6 +1,5 @@
 const howtobtn = document.querySelector('#btn-howto')
-const howtoblock = document.querySelector('.howto-content')
-const howtoblock2 = document.querySelector('.howto-content2')
+const howtoblock = document.querySelector('.howto-container')
 const bghowto = document.querySelector('.bg-howto')
 if(document.documentElement.clientWidth <= 1220) {
     bghowto.classList.toggle('truefalsebg')
@@ -9,7 +8,6 @@ if(document.documentElement.clientWidth <= 1220) {
 setTimeout(() => {
     if(howtoblock.classList.contains('showhowto')) {
         howtoblock.classList.toggle('showhowto')
-        howtoblock2.classList.toggle('showhowto')
         if(document.documentElement.clientWidth <= 1220) {
             bghowto.classList.toggle('truefalsebg')
 
@@ -19,7 +17,6 @@ setTimeout(() => {
 
 howtobtn.addEventListener('click', () => {
     howtoblock.classList.toggle('showhowto')
-    howtoblock2.classList.toggle('showhowto')
     if(document.documentElement.clientWidth <= 1220) {
         bghowto.classList.toggle('truefalsebg')
 
