@@ -238,7 +238,6 @@ function UpdateUsers(count) {
 }
 
 socket.on('connection', (cc) => {
-    bgMusic()
     UpdateClick(cc)
     let countChain = cc / 20 
     countChain = Math.floor(countChain) - 1
