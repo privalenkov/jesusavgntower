@@ -309,7 +309,7 @@ Events.on(mouseConstraint, "enddrag", (e) => {
 })
 
 document.addEventListener('click', () => {
-    bgMusic()
+    bgMusicplay.play()
     let bodies = Composite.allBodies(engine.world)
     let point = Query.point(bodies, mouseConstraint.mouse.position)
     let bool = true
@@ -364,6 +364,15 @@ let boundsScaleTarget = 1,
         y: 1
     },
     animid = 0
+
+document.addEventListener( 'visibilitychange' , function() {
+    if (document.hidden) {
+        bgMusicplay.pause()
+        
+    } else {
+        bgMusicplay.play()
+    }
+}, true );
 
 // use the engine tick event to control our view
 Events.on(engine, 'beforeTick', function() {
