@@ -308,7 +308,6 @@ Events.on(mouseConstraint, "enddrag", (e) => {
 })
 
 document.addEventListener('click', () => {
-    bgMusicplay.play()
     let bodies = Composite.allBodies(engine.world)
     let point = Query.point(bodies, mouseConstraint.mouse.position)
     let bool = true
@@ -368,7 +367,7 @@ document.addEventListener( 'visibilitychange' , function() {
     if (document.hidden) {
         bgMusicplay.pause()
         
-    } else {
+    } else if(!document.hidden && toggle != false ) {
         bgMusicplay.play()
     }
 }, true );

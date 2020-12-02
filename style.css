@@ -9,10 +9,17 @@ body {
     font-family: 'Comfortaa', cursive;
 }
 header {
+    z-index: 2;
     user-select: none;
     position: absolute;
     display: flex;
     right: 0;
+    align-items: center;
+    width: 100vw;
+    justify-content: space-between;
+}
+.btn-container {
+    display: flex;
     align-items: center;
 }
 .container {
@@ -26,12 +33,11 @@ header {
     border-radius: 50%;
     margin: 20px 20px 20px 10px;
 }
-.btn:hover {
+.btn-container:hover .btn, .link-content:hover .btn {
     color: #ffffff;
     background: #1F2E37;
 }
-
-header:hover {
+.btn-container:hover {
     cursor: pointer;
 }
 .btn::after {
@@ -262,4 +268,16 @@ a {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
+}
+/* header, footer {
+    pointer-events: none;
+} */
+.btn-soundonoff {
+    width: 60px;
+    height: 60px;
+    background-image: url('img/sound_off.png');
+    margin: 0 0 0 20px;
+}
+.offsound {
+    background-image: url('img/sound_on.png');
 }

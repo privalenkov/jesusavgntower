@@ -1,4 +1,5 @@
-const howtobtn = document.querySelector('#btn-howto')
+const howtobtn = document.querySelector('.btn-container')
+const soundbtn = document.querySelector('.btn-soundonoff')
 const howtoblock = document.querySelector('.howto-container')
 const bghowto = document.querySelector('.bg-howto')
 if(document.documentElement.clientWidth <= 1220) {
@@ -20,5 +21,17 @@ howtobtn.addEventListener('click', () => {
     if(document.documentElement.clientWidth <= 1220) {
         bghowto.classList.toggle('truefalsebg')
 
+    }
+})
+let toggle = false
+soundbtn.addEventListener('click', () => {
+    soundbtn.classList.toggle('offsound')
+    if(toggle) {
+        bgMusicplay.pause()
+        toggle = false
+        
+    } else {
+        bgMusicplay.play()
+        toggle = true
     }
 })
