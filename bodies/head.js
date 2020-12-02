@@ -12,7 +12,7 @@ class head {
             render: {
                 zIndex: 1,
                 sprite: {
-                    texture: 'img/head.png',
+                    texture: 'img/head_ny.png',
                     xScale: this.xScale,
                     yScale: this.yScale
                 }

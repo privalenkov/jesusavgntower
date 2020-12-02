@@ -75,11 +75,12 @@ class hair {
         }))
     }
     removeChain(stack) {
-        for(let i = 0; i <= 2; i++) {
+        for(let i = 0; i <= 3; i++) {
             Composite.remove(stack, stack.bodies[stack.bodies.length - 1])
             Composite.remove(stack, stack.constraints[stack.constraints.length - 1])
         }
         new recthair().create(Hair)
+        new hat().create(Hair)
         new text().create(Hair)
     }
 }

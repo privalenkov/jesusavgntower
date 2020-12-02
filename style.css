@@ -50,6 +50,11 @@ header:hover {
     font-size: 12px;
     content: 'Я';
 }
+.btn-sound::after {
+    font-weight: 700;
+    font-size: 12px;
+    content: 'Тут';
+}
 
 .btn-hes::after {
     font-weight: 700;
@@ -158,7 +163,7 @@ a {
     width: 100vw;
     height: 100vh;
     position: absolute;
-    background: #F4F3EE;
+    background: #E2ECF5;
 }
 
 .truefalsebg {
@@ -249,5 +254,12 @@ a {
     height: 200px;
 }
 .bg-howto,  .howto-container {
+    pointer-events: none;
+}
+
+#snow {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
 }

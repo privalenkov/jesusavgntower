@@ -10,9 +10,9 @@ class text {
         const lastcos = Math.cos(stack.bodies[stack.bodies.length - 1].angle)
         const lastsin = Math.sin(stack.bodies[stack.bodies.length - 1].angle)
         const body = Bodies.rectangle(stack.bodies[stack.bodies.length - 1].position.x + (lastcos * 40), stack.bodies[stack.bodies.length - 1].position.y - (lastsin * -40), 35, 35, { 
-            collisionFilter: { group: group, group: group2 },
+            collisionFilter: { group: group },
             render: {
-                fillStyle: "#F4F3EE",
+                fillStyle: "#E2ECF5",
                 text:{
                     content: "У вас 0 cm",
                     color: "#1F2E37",
@@ -20,18 +20,18 @@ class text {
                     family: "Comfortaa",
                 },
             },
-           
+            label: 'text',
             density: 0.00001,
-            angle: stack.bodies[stack.bodies.length - 1].angle
+            angle: stack.bodies[stack.bodies.length - 2].angle
         });
         const cos = Math.cos(body.angle)
         const sin = Math.sin(body.angle)
         Composite.add(stack, body)
         Composite.add(stack, Constraint.create({
             bodyB: body,
-            bodyA: stack.bodies[stack.bodies.length - 3],
+            bodyA: stack.bodies[stack.bodies.length - 4],
             pointB: { x: cos * -15, y: sin * -15},
-            pointA: { x: cos * 22, y: sin * 82 },
+            pointA: { x: cos * 22, y: sin * 82 - 35 },
             stiffness: 1,
             length: 0,
             render: {

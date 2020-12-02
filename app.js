@@ -34,7 +34,7 @@ const render = Render.create({
         showVelocity: false,
         wireframes: false,
         angles: false,
-        background: '#F4F3EE'
+        background: '#E2ECF5'
     }
 })
 
@@ -82,9 +82,11 @@ const Eye = EyeBody.create()
 
 const addChain = (countChain) => {
     const RectHair = new recthair()
+    const Hat = new hat()
     const Text = new text()
     
     Text.remove(Hair)
+    Hat.remove(Hair)
     RectHair.remove(Hair)
     if(countChain != 0) {
 
@@ -94,6 +96,7 @@ const addChain = (countChain) => {
         }
     }
     RectHair.create(Hair)
+    Hat.create(Hair)
     Text.create(Hair)
     setContext(towerHeight)
 }
@@ -127,7 +130,7 @@ function incTowerHeight () {
         collisionFilter: { group: group, group: group2 },
         label: 'pointinc',
         render: {
-            fillStyle: "#F4F3EE",
+            fillStyle: "#E2ECF5",
             text:{
                 content: "+1",
                 color: "#96CE73",
@@ -153,7 +156,7 @@ function decTowerHeight () {
         collisionFilter: { group: group, group: group2 },
         label: 'pointinc',
         render: {
-            fillStyle: "#F4F3EE",
+            fillStyle: "#E2ECF5",
             text:{
                 content: "-3",
                 color: "#CE7373",
@@ -187,13 +190,16 @@ function removeOneChain () {
 
 const addOneChain = () => {
     const RectHair = new recthair()
+    const Hat = new hat()
     const Text = new text()
     
     Text.remove(Hair)
+    Hat.remove(Hair)
     RectHair.remove(Hair)
     
     HairBody.addChain(Hair)
     RectHair.create(Hair)
+    Hat.create(Hair)
     Text.create(Hair)
     setContext(towerHeight)
 }
@@ -207,7 +213,7 @@ setInterval(() => {
 
     let lastcountChain = Hair.bodies.length - 3
     let countChain = towerHeight / 20 
-    countChain = Math.floor(countChain) - 1
+    countChain = Math.floor(countChain) 
     if(lastcountChain < countChain) {
         addOneChain()
         lastcountChain = countChain
@@ -219,6 +225,7 @@ setInterval(() => {
 }, 1000);
 
 new recthair().create(Hair)
+new hat().create(Hair)
 new text().create(Hair)
 
 
@@ -231,6 +238,7 @@ function UpdateUsers(count) {
 }
 
 socket.on('connection', (cc) => {
+    bgMusic()
     UpdateClick(cc)
     let countChain = cc / 20 
     countChain = Math.floor(countChain) - 1
@@ -301,6 +309,7 @@ Events.on(mouseConstraint, "enddrag", (e) => {
 })
 
 document.addEventListener('click', () => {
+    bgMusic()
     let bodies = Composite.allBodies(engine.world)
     let point = Query.point(bodies, mouseConstraint.mouse.position)
     let bool = true
@@ -387,22 +396,26 @@ Events.on(engine, 'beforeTick', function() {
     }
     
     if(towerHeight <= 0 && btnclick != true) {
-        Head.render.sprite.texture = 'img/head0.png'
+        Head.render.sprite.texture = 'img/head0_ny.png'
         animid = 1
-        Head.position.y = 393;
+        Head.position.y = 426;
+        Hair.bodies[2].render.visible = false;
         Hair.bodies[1].render.visible = false;
         Hair.bodies[0].render.visible = false;
     } else if(towerHeight >= 0 && btnclick != true) {
-        Head.render.sprite.texture = 'img/head.png'
+        Head.render.sprite.texture = 'img/head_ny.png'
         animid = 2
-        Head.position.y = 410;
+        Head.position.y = 442;
+        Hair.bodies[2].render.visible = true;
         Hair.bodies[1].render.visible = true;
         Hair.bodies[0].render.visible = true;
     } 
     if(animid == 1 && btnclick == true) {
-        Head.render.sprite.texture = 'img/head0A.png'
+        Head.position.y = 424;
+        Head.render.sprite.texture = 'img/head0A_ny.png'
     } else if(animid == 2 && btnclick == true) {
-        Head.render.sprite.texture = 'img/headA.png'
+        Head.position.y = 440;
+        Head.render.sprite.texture = 'img/headA_ny.png'
     }
     
     if(towerHeight <= 0) {
