@@ -22,6 +22,9 @@ const
     engine = Engine.create(),
     world = engine.world
     
+const
+    frontVersion = 'JQaZmv15'
+
 // create renderer
 const render = Render.create({
     element: document.body,
@@ -238,6 +241,7 @@ function UpdateUsers(count) {
 }
 
 socket.on('connection', (cc) => {
+    socket.emit('frontVer', frontVersion)
     UpdateClick(cc)
     let countChain = cc / 20 
     countChain = Math.floor(countChain) - 1
@@ -256,7 +260,7 @@ function firststart() {
         
     Bounds.translate(render.bounds, translate)
 }
-
+socket.on('frontVer', frontVersion)
 socket.on('clickInc', UpdateClick)
 socket.on('clickDec', UpdateClick)
 socket.on('autoDec', UpdateClick)
@@ -315,7 +319,7 @@ document.addEventListener('click', () => {
     // }
     point.forEach(function(body){
         if(body.label != 'glad' && body.label != 'pointinc' && bool ) {
-            let compound = Hair.bodies[Hair.bodies.length - 3]
+            let compound = Hair.bodies[Hair.bodies.length - 4]
             btnclick = true
             setTimeout(() => {
                 btnclick = false
@@ -325,8 +329,9 @@ document.addEventListener('click', () => {
             audio.src = 'sounds/tap.mp3'
             audio.play()
     
-            let rand = getRandomFloat(-.1, .1)
+            let rand = getRandomFloat(-.05, .05)
             Body.setAngularVelocity(compound, rand);
+            Body.applyForce(compound, compound.position, {x: rand, y: 0})
             incTowerHeight()
             bool = false
         }
