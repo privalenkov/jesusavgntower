@@ -25,6 +25,10 @@ header {
 .container {
     overflow: hidden;
 }
+.notification {
+    color: #d12424;
+    font-size: 18px;
+}
 .btn {
     transition: .2s;
     width: 40px;
@@ -182,6 +186,10 @@ a {
     .howto-content {
         justify-content: center;
     }
+    .notification {
+        text-align: center;
+        font-size: 14px;
+    }
 }
 @media (max-width: 768px) {
     
@@ -277,6 +285,9 @@ a {
     height: 60px;
     background-image: url('img/sound_off.png');
     margin: 0 0 0 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .offsound {
     background-image: url('img/sound_on.png');
