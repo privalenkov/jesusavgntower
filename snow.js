@@ -49,7 +49,7 @@ function snow() {
             flake.velX += Math.cos(flake.step += .05) * flake.stepSize;
         }
 
-        ctx.fillStyle = "rgba(255,255,255)";
+        ctx.fillStyle = "#fff";
         flake.y += flake.velY;
         flake.x += flake.velX;
             
